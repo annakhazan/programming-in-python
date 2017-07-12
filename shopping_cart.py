@@ -1,3 +1,5 @@
+import datetime
+
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
     {"id":2, "name": "All-Seasons Salt", "department": "pantry", "aisle": "spices seasonings", "price": 4.99},
@@ -21,6 +23,29 @@ products = [
     {"id":20, "name": "Pomegranate Cranberry & Aloe Vera Enrich Drink", "department": "beverages", "aisle": "juice nectars", "price": 4.25}
 ] # Products based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
 
-string = raw_input('--> ')
+time = datetime.datetime.now()
+items = []
+string = ''
+while string != 'DONE':
+    if string != '':
+        items.append(int(string))
+    string = raw_input("Please input a product identifier, or 'DONE' if there are no more items: ")
 
-print string
+print items
+
+print '-------------------------'
+print 'My Grocery Store'
+print '-------------------------'
+print 'Phone: (123)456-7890'
+print 'Checkout time: {0}'.format(time)
+print '-------------------------'
+subtotal = 0
+for item in [(p['name'], float(p['price'])) for p in products for i in items if p['id'] == i]:
+    print '+ {0} (${1:.2f})'.format(*item)
+    subtotal += item[1]
+print '-------------------------'
+print 'Subtotal: ${0:.2f}'.format(subtotal)
+print 'Plus NYC Sales Tax (8.875%): ${0:.2f}'.format(subtotal*.0875)
+print 'Total: ${0:.2f}'.format(subtotal*1.0875)
+print '-------------------------'
+print 'Thanks for your business! Please come again.'
