@@ -31,15 +31,15 @@ while string != 'DONE':
         items.append(int(string))
     string = raw_input("Please input a product identifier, or 'DONE' if there are no more items: ")
 
-print items
-
 print '-------------------------'
 print 'My Grocery Store'
 print '-------------------------'
+print 'Web: www.mygrocerystore.com'
 print 'Phone: (123)456-7890'
 print 'Checkout time: {0}'.format(time)
 print '-------------------------'
 subtotal = 0
+print 'Shopping Cart Items:'
 for item in [(p['name'], float(p['price'])) for p in products for i in items if p['id'] == i]:
     print '+ {0} (${1:.2f})'.format(*item)
     subtotal += item[1]
